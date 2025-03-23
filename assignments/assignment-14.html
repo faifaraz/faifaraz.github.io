@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Works</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+h1 {
+    padding: 20px;
+    background: #222;
+    color: white;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background: #333;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 5px;
+    background: #444;
+    border-radius: 4px;
+}
+
+nav a:hover {
+    background: #555;
+}
+
+main {
+    width: 100%;
+    padding: 20px;
+}
+
+iframe {
+    width: 90%;
+    height: 80vh;
+    border: none;
+    background: white;
+}
+    </style>
+</head>
+<body>
+    <h1>Class Works</h1>
+    <nav id="navPanel">
+        <!-- Navigation items will be dynamically added here -->
+    </nav>
+    <main id="content">
+        <iframe id="contentFrame" src="landing.html"></iframe>
+    </main>
+    <script>
+        const works = {
+    "task1": { "title": "task1", "url": "task1/index.html" },
+    "task2": { "title": "task2", "url": "task2/index.html" },
+    "task3": { "title": "task3", "url": "task3/index.html" },
+
+};
+
+// Function to create the navigation menu
+function createNav() {
+    const navPanel = document.getElementById("navPanel");
+
+    Object.values(works).forEach(work => {
+        let link = document.createElement("a");
+        link.textContent = work.title;
+        link.href = "#";
+        link.onclick = function () {
+            loadWork(work.url);
+            return false; // Prevent default link behavior
+        };
+        navPanel.appendChild(link);
+    });
+}
+
+// Function to load the selected work inside an iframe
+function loadWork(url) {
+    document.getElementById("contentFrame").src = url;
+}
+
+// Initialize the navigation menu
+createNav();
+
+    </script>
+</body>
+
+</html>

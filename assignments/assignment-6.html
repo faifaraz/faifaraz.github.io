@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #333;
+        }
+
+        #grade_span {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+    <script>
+        function calculate_grade() {
+            let score = parseFloat(document.getElementById("score_input").value);
+            let result = "";
+            if (score >= 80) {
+                result = "A";
+            } else if (score >= 60 && score < 80) {
+                result = "B";
+            } else if (score >= 40 && score < 60) {
+                result = "C";
+            } else {
+                result = "F";
+            }
+            document.getElementById("grade_span").textContent = result;
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Grade Calculator</h3>
+        <input placeholder="Enter Score" id="score_input" onkeyup="calculate_grade()">
+        <div class="result">
+            <p>Your Grade Is: <span id="grade_span"></span></p>
+        </div>
+    </div>
+</body>
+
+</html>

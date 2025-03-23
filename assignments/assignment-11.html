@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Information</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+        margin: 50px;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        width: 75%;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+      }
+      .row label {
+        flex: 1;
+        text-align: left;
+        font-weight: bold;
+      }
+      .row input {
+        flex: 2;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 48%;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #demo_div,
+      #search_results {
+        margin-top: 20px;
+        padding: 10px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        width: 75%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .student-info {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      .student-info:last-child {
+        border-bottom: none;
+      }
+      #searchField {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Student Information</h2>
+      
+      <!-- Row 1: Name -->
+      <div class="row">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter name" />
+        <label for="UNIVERSITY" style="margin-left:20px;">University:</label>
+        <input type="text" id="UNIVERSITY" placeholder="Enter university" style="width: 40%;" />
+      </div>
+      
+      <!-- Row 3: State and Country on same line -->
+      <div class="row">
+        <label for="state">State:</label>
+        <input type="text" id="state" placeholder="Enter state" />
+        <label for="country" style="margin-left:20px;">Country:</label>
+        <input type="text" id="country" placeholder="Enter country" style="width: 40%;" />
+      </div>
+      
+      <div class="button-group">
+        <button onclick="addStudent()">Add Student</button>
+        <button onclick="clearInputs()">Clear Inputs</button>
+      </div>
+      <div class="button-group">
+        <button onclick="displayStudents()">Display Students</button>
+        <button onclick="clearDisplay()">Clear Display</button>
+      </div>
+      <input type="text" id="searchField" placeholder="Search by name or university" onkeyup="searchStudents()" />
+    </div>
+
+    <div id="demo_div"></div>
+    <div id="search_results"></div>
+
+    <script>
+      let students = [];
+
+      function addStudent() {
+        const newStudent = {
+          Name: document.getElementById("name").value.trim(),
+          University: document.getElementById("UNIVERSITY").value.trim(),
+          State: document.getElementById("state").value.trim(),
+          Country: document.getElementById("country").value.trim(),
+          description: function () {
+            return `
+              <div class="student-info">
+                <strong>${this.Name}</strong><br>
+                University: ${this.University}<br>
+                State: ${this.State}<br>
+                Country: ${this.Country}
+              </div>
+            `;
+          },
+        };
+
+        if (
+          newStudent.Name &&
+          newStudent.University &&
+          newStudent.State &&
+          newStudent.Country
+        ) {
+          students.push(newStudent);
+          alert("Student added successfully!");
+          document.getElementById("searchResults").innerHTML = "";
+        } else {
+          alert("Please fill in all fields.");
+        }
+      }
+
+      function displayStudents() {
+        let output = students.length
+          ? students.map((student) => student.description()).join("")
+          : "<p>No students added yet.</p>";
+        document.getElementById("demo_div").innerHTML = output;
+      }
+
+      function clearInputs() {
+        document.getElementById("name").value = "";
+        document.getElementById("UNIVERSITY").value = "";
+        document.getElementById("state").value = "";
+        document.getElementById("country").value = "";
+      }
+
+      function clearDisplay() {
+        document.getElementById("demo_div").innerHTML = "";
+      }
+
+      function searchStudents() {
+        const searchValue = document.getElementById("searchField").value.trim().toLowerCase();
+        if (!searchValue) {
+          document.getElementById("search_results").innerHTML = "";
+          return;
+        }
+        const filteredStudents = students.filter(student =>
+          student.Name.toLowerCase().includes(searchValue) ||
+          student.University.toLowerCase().includes(searchValue)
+        );
+        let output = filteredStudents.length
+          ? filteredStudents.map(student => student.description()).join("")
+          : "<p>No matching students found.</p>";
+        document.getElementById("search_results").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>

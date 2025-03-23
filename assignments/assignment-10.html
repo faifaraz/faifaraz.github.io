@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Information</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+        margin: 50px;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+        width: 300px;
+      }
+      label {
+        display: block;
+        margin: 10px 0 5px;
+        font-weight: bold;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        margin-top: 15px;
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #demo_div {
+        margin-top: 20px;
+        padding: 10px;
+        background: white;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        text-align: left;
+      }
+      .student-info {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+      }
+      .student-info:last-child {
+        border-bottom: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Student Information</h2>
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter name" />
+
+      <label for="UNIVERSITY">University:</label>
+      <input type="text" id="UNIVERSITY" placeholder="Enter university" />
+
+      <label for="state">State:</label>
+      <input type="text" id="state" placeholder="Enter state" />
+
+      <label for="country">Country:</label>
+      <input type="text" id="country" placeholder="Enter country" />
+
+      <button onclick="addStudent()">Add Student</button>
+      <button onclick="displayStudents()">Display Students</button>
+    </div>
+
+    <div id="demo_div"></div>
+
+    <script>
+      let students = [];
+
+      function addStudent() {
+        const newStudent = {
+          Name: document.getElementById("name").value,
+          University: document.getElementById("UNIVERSITY").value,
+          State: document.getElementById("state").value,
+          Country: document.getElementById("country").value,
+          description: function () {
+            return `
+              <div class="student-info">
+                <strong>${this.Name}</strong><br>
+                University: ${this.University}<br>
+                State: ${this.State}<br>
+                Country: ${this.Country}
+              </div>
+            `;
+          },
+        };
+
+        if (
+          newStudent.Name &&
+          newStudent.University &&
+          newStudent.State &&
+          newStudent.Country
+        ) {
+          students.push(newStudent);
+          alert("Student added successfully!");
+        } else {
+          alert("Please fill in all fields.");
+        }
+      }
+
+      function displayStudents() {
+        let output = students.length
+          ? students.map((student) => student.description()).join("")
+          : "<p>No students added yet.</p>";
+        document.getElementById("demo_div").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>
