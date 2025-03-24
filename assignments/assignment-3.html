@@ -1,14 +1,35 @@
 <html>
     <head>
+        <style>
+            body {
+                background-color: white;
+                font-family: Arial, sans-serif;
+                text-align: center;
+                margin-top: 50px;
+            }
+            input {
+                padding: 10px;
+                font-size: 16px;
+                margin-right: 10px;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: blue;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+        </style>
         <script>
             function greet(){
-                name = document.getElementById("user").value;
+                let name = document.getElementById("user").value;
                 alert("Welcome to JS " + name);
             }
         </script>
     </head>
     <body>
-        <input placeholder="Enter the name" id="user"/>
+        <input placeholder="Enter your name" id="user"/>
         <button onclick="greet()">Enter</button>
     </body>
 </html>

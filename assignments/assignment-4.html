@@ -1,62 +1,82 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
     <script>
-    function addition() {
-            x = parseInt(document.getElementById("num1").value);
-            y = parseInt(document.getElementById("num2").value);
-            result = x + y;
+        function addition() {
+            let x = parseFloat(document.getElementById("num1").value);
+            let y = parseFloat(document.getElementById("num2").value);
+            let result = x + y;
             document.getElementById("res").value = result;
         }
         function subtraction() {
-            x = parseInt(document.getElementById("num1").value);
-            y = parseInt(document.getElementById("num2").value);
-            result = x - y;
+            let x = parseFloat(document.getElementById("num1").value);
+            let y = parseFloat(document.getElementById("num2").value);
+            let result = x - y;
             document.getElementById("res").value = result;
         }
         function division() {
-            x = parseInt(document.getElementById("num1").value);
-            y = parseInt(document.getElementById("num2").value);
-            result = x / y;
+            let x = parseFloat(document.getElementById("num1").value);
+            let y = parseFloat(document.getElementById("num2").value);
+            if (y === 0) {
+                alert("Cannot divide by zero!");
+                return;
+            }
+            let result = x / y;
             document.getElementById("res").value = result;
         }
         function multiplication() {
-            x = parseInt(document.getElementById("num1").value);
-            y = parseInt(document.getElementById("num2").value);
-            result = x * y;
+            let x = parseFloat(document.getElementById("num1").value);
+            let y = parseFloat(document.getElementById("num2").value);
+            let result = x * y;
             document.getElementById("res").value = result;
         }
     </script>
     <style>
+        body {
+            background-color: white; /* Added white background */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #container {
+            padding: 20px;
+            background: #f9f9f9;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
         input {
-            width: 300px;
-            font-size: 20px;
+            width: 250px;
+            font-size: 18px;
+            padding: 8px;
+            margin: 5px;
+            text-align: center;
         }
-
         button {
-            width: 230px;
-            font-size: 20px;
+            width: 250px;
+            font-size: 18px;
+            padding: 10px;
+            margin: 5px;
+            background-color: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
         }
-
+        button:hover {
+            background-color: darkblue;
+        }
         .button_div {
             margin-top: 10px;
         }
-
-        #container {
-            padding: 10px;
-            margin: 10px;
-        }
     </style>
 </head>
-
 <body>
     <div id="container">
         <div class="input_div">
-            <input placeholder="Enter the value of X" id="num1" />
-            <input placeholder="Enter the value of Y" id="num2" />
-            <input placeholder="Result will appear here" id="res" disabled />
+            <input type="number" placeholder="Enter the value of X" id="num1" />
+            <input type="number" placeholder="Enter the value of Y" id="num2" />
+            <input type="text" placeholder="Result will appear here" id="res" disabled />
         </div>
 
         <div class="button_div">
@@ -66,7 +86,5 @@
             <button onclick="division()">Division (X / Y)</button>
         </div>
     </div>
-
 </body>
-
 </html>
