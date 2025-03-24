@@ -14,18 +14,33 @@
 
         body {
             font-family: 'Dancing Script', cursive;
-            background: linear-gradient(120deg, #0a0a0a, #1c1c1c);
             color: #fff;
             overflow-x: hidden;
-            animation: backgroundChange 10s infinite;
+            animation: fadeIn 2s ease-in-out;
         }
 
-        @keyframes backgroundChange {
-            0% { background: linear-gradient(120deg, #121212, #282828); }
-            25% { background: linear-gradient(120deg, #1c1c1c, #383838); }
-            50% { background: linear-gradient(120deg, #0f0f0f, #4a4a4a); }
-            75% { background: linear-gradient(120deg, #282828, #505050); }
-            100% { background: linear-gradient(120deg, #121212, #282828); }
+        /* Background Image Slideshow */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: -1;
+            animation: slideshow 15s infinite linear;
+        }
+
+        @keyframes slideshow {
+            0% { background-image: url('background/image1.jpg'); }
+            25% { background-image: url('background/image2.jpg'); }
+            50% { background-image: url('background/image3.jpg'); }
+            75% { background-image: url('background/image4.jpg'); }
+            100% { background-image: url('background/image5.jpg'); }
+
         }
 
         /* Hero Section */
@@ -51,7 +66,7 @@
         }
 
         .hero button {
-            background: #ff6f61;
+            background: #0b053d;
             border: none;
             padding: 15px 30px;
             color: #fff;
@@ -63,12 +78,12 @@
         }
 
         .hero button:hover {
-            background: #e6574a;
+            background: #000000;
             transform: scale(1.1);
             box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
         }
 
-        /* Flash Card Section */
+        /* Assignments Section */
         .flashcards-section {
             display: none;
             height: 100vh;
@@ -85,7 +100,7 @@
         }
 
         .flashcard {
-            background: #000;
+            background: rgba(0, 0, 0, 0.8);
             border-radius: 25px;
             text-align: center;
             box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
@@ -164,19 +179,7 @@
             background: #d32f2f;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Media Queries for Responsiveness */
+        /* Media Queries */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 3rem;
@@ -219,7 +222,7 @@
     </div>
 
     <script>
-         const works = {
+        const works = {
     "task1": { "title": "Basic HTML styling", "url": "assignments/assignment-1.html" },
     "task2": { "title": "CSS Hover", "url": "assignments/assignment-2.html" },
     "task3": { "title": "Welcome to JS", "url": "assignments/assignment-3.html" },
@@ -234,7 +237,6 @@
     "task12": { "title": "Functions", "url": "assignments/assignment-12.html" },
     "task13": { "title": "Bootstrap custom form", "url": "assignments/assignment-13.html" },
     "task14": { "title": "JSON", "url": "assignments/assignment-14.html" }
-
 };
 
         function createFlashcards() {
@@ -261,10 +263,8 @@
         }
 
         function openFullscreen(url) {
-            const fullscreenContainer = document.getElementById("fullscreenContainer");
-            const fullscreenFrame = document.getElementById("fullscreenFrame");
-            fullscreenFrame.src = url;
-            fullscreenContainer.style.display = "flex";
+            document.getElementById("fullscreenContainer").style.display = "flex";
+            document.getElementById("fullscreenFrame").src = url;
         }
 
         function closeFullscreen() {
@@ -273,7 +273,6 @@
         }
 
         document.getElementById("closeButton").onclick = closeFullscreen;
-
         createFlashcards();
     </script>
 </body>
